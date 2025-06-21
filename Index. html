@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pong</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(#4CAF50, #2E7D32);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .court-line {
+      position: absolute;
+      width: 6px;
+      height: 100%;
+      background-color: white;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .welcome-screen,
+    .customize-screen {
+      position: absolute;
+      z-index: 2;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.5s ease;
+    }
+
+    .customize-screen {
+      display: none;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 5px #000;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .fancy-button {
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      color: white;
+      background: linear-gradient(135deg, #1E88E5, #424242);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.5s ease;
+      margin: 10px;
+    }
+
+    .fancy-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .color-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .color-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid white;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .color-button:hover {
+      transform: scale(1.2);
+    }
+
+    /* Estilo para pantalla de victoria */
+    #victoryScreen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.85);
+      color: white;
+      font-size: 4rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      text-align: center;
+      pointer-events: none;
+      text-shadow: 2px 2px 10px black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="miCanvas"></canvas>
+
+  <!-- Línea central -->
+  <div class="court-line"></div>
+
+  <!-- Pantalla de bienvenida -->
+  <div class="welcome-screen" id="welcomeScreen">
+    <h1 id="titulo">Pong</h1>
+    <button class="fancy-button" id="jugarBtn">Jugar</button>
+  </div>
+
+  <!-- Pantalla de personalización -->
+  <div class="customize-screen" id="customizeScreen">
+    <h1>Elige el color de tu pelota</h1>
+    <div class="color-buttons">
+      <div class="color-button" style="background-color: white;" data-color="white"></div>
+      <div class="color-button" style="background-color: red;" data-color="red"></div>
+      <div class="color-button" style="background-color: blue;" data-color="blue"></div>
+      <div class="color-button" style="background-color: yellow;" data-color="yellow"></div>
+      <div class="color-button" style="background-color: pink;" data-color="pink"></div>
+      <div class="color-button" style="background-color: orange;" data-color="orange"></div>
+    </div>
+  </div>
+
+  <!-- Pantalla de victoria -->
+  <div id="victoryScreen">¡Ganaste!</div>
+
+  <!-- Enlace al JS -->
+  <script src="js/bola.js"></script>
+</body>
+</html>
 
